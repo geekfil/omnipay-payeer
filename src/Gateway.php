@@ -8,7 +8,6 @@ use Omnipay\Common\AbstractGateway;
  * Payeer Gateway
  * @method \Omnipay\Common\Message\RequestInterface completeAuthorize(array $options = array())
  * @method \Omnipay\Common\Message\RequestInterface capture(array $options = array())
- * @method \Omnipay\Common\Message\RequestInterface purchase(array $options = array())
  * @method \Omnipay\Common\Message\RequestInterface completePurchase(array $options = array())
  * @method \Omnipay\Common\Message\RequestInterface refund(array $options = array())
  * @method \Omnipay\Common\Message\RequestInterface void(array $options = array())
@@ -42,11 +41,16 @@ class Gateway extends AbstractGateway
     }
 
     /**
-     * @return Message\AuthorizeRequest
+     * @return \Omnipay\Common\Message\AbstractRequest
      */
     public function authorize(array $parameters = array())
     {
         return $this->createRequest('\Omnipay\Payeer\Message\AuthorizeRequest', $parameters);
+    }
+
+    public function purchase(array $parameters = array())
+    {
+        return $this->createRequest('\Omnipay\Payeer\Message\PurchaseRequest', $parameters);
     }
 
     public function __call($name, $arguments)
