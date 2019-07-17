@@ -1,17 +1,17 @@
 {
-    "name": ":vendor/omnipay-:gateway",
-    "description": ":package_description",
+    "name": "geekfil/omnipay-payeer",
+    "description": "Omnipay gateway for payeer.ocm",
     "keywords": [
         "omnipay",
-        ":gateway"
+        "payeer"
     ],
-    "homepage": "https://github.com/:vendor/omnipay-:gateway",
+    "homepage": "https://github.com/geekfil/omnipay-payeer",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": ":author_email",
-            "homepage": ":author_website"
+            "name": "Igor Filin",
+            "email": "geekfil@gmail.com",
+            "homepage": "https://t.me/geekfil"
         }
     ],
     "require": {
@@ -19,17 +19,16 @@
     },
     "require-dev": {
         "omnipay/tests": "~3.0",
-        "squizlabs/php_codesniffer": "^3",
-        "phpro/grumphp": "^0.14"
+        "squizlabs/php_codesniffer": "^3"
     },
     "autoload": {
         "psr-4": {
-            "Omnipay\\Skeleton\\": "src"
+            "Omnipay\\Payeer\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "League\\Skeleton\\Test\\": "tests"
+            "League\\Payeer\\Test\\": "tests"
         }
     },
     "scripts": {

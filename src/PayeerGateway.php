@@ -1,17 +1,17 @@
 <?php
 
-namespace Omnipay\Skeleton;
+namespace Omnipay\Payeer;
 
 use Omnipay\Common\AbstractGateway;
 
 /**
- * Skeleton Gateway
+ * Payeer Gateway
  */
-class SkeletonGateway extends AbstractGateway
+class PayeerGateway extends AbstractGateway
 {
     public function getName()
     {
-        return 'Skeleton';
+        return 'Payeer';
     }
 
     public function getDefaultParameters()
@@ -37,6 +37,6 @@ class SkeletonGateway extends AbstractGateway
      */
     public function authorize(array $parameters = array())
     {
-        return $this->createRequest('\Omnipay\Skeleton\Message\AuthorizeRequest', $parameters);
+        return $this->createRequest('\Omnipay\Payeer\Message\AuthorizeRequest', $parameters);
     }
 }
