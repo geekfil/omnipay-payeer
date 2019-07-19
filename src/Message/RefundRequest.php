@@ -60,14 +60,16 @@ class RefundRequest extends AbstractRequest
         $data['curOut'] = $this->getCurrency();
         $data['to'] = $this->getPayeeAccount();
         $data['comment'] = $this->getDescription();
-        $data['action'] = 'transfer';
+        $data['action'] = $this->getAction()?$this->getAction():'transfer';
 
         return $data;
     }
 
     public function sendData($data)
     {
-        $httpResponse = $this->httpClient->post($this->endpoint, null, $data)->send();
+        $httpResponse = $this->httpClient->post($this->endpoint, [
+            'Content-Type' => 'application/x-www-form-urlencoded'
+        ], $data);
         $jsonResponse = json_decode($httpResponse->getBody(true));
         return $this->response = new RefundResponse($this, $jsonResponse);
     }

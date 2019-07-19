@@ -16,7 +16,6 @@ class RefundResponse extends AbstractResponse
     {
         $this->request = $request;
         $this->data = $data;
-        $this->success = false;
         $this->parseResponse($data);
     }
 
