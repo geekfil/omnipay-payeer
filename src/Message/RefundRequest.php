@@ -48,6 +48,16 @@ class RefundRequest extends AbstractRequest
         return $this->setParameter('payeeAccount', $value);
     }
 
+    public function getAction()
+    {
+        return $this->getParameter('action');
+    }
+
+    public function setAction($value)
+    {
+        return $this->setParameter('action', $value);
+    }
+
     public function getData()
     {
         $this->validate('payeeAccount', 'amount', 'currency', 'description');
@@ -61,7 +71,6 @@ class RefundRequest extends AbstractRequest
         $data['to'] = $this->getPayeeAccount();
         $data['comment'] = $this->getDescription();
         $data['action'] = $this->getAction()?$this->getAction():'transfer';
-
         return $data;
     }
 
@@ -71,6 +80,6 @@ class RefundRequest extends AbstractRequest
             'Content-Type' => 'application/x-www-form-urlencoded'
         ], $data);
         $jsonResponse = json_decode($httpResponse->getBody(true));
-        return $this->response = new RefundResponse($this, $jsonResponse);
+        return new RefundResponse($this, $jsonResponse);
     }
 }
