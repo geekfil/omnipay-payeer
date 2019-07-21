@@ -36,7 +36,7 @@ class RefundResponse extends AbstractResponse
 
     private function parseResponse($data)
     {
-        if (count($data->errors)) {
+        if (isset($data->errors)) {
             $this->message = implode(" | ", $data->errors);
             $this->success = false;
             return false;
