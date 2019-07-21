@@ -31,17 +31,12 @@ class RefundResponse extends AbstractResponse
 
     public function getTransactionReference()
     {
-        if (isset($this->data->historyId)){
-            return $this->data->historyId;
-        }elseif (isset($this->data['historyId'])){
-            return $this->data['historyId'];
-        }else{
-            return 0;
-        }
+        return 0;
     }
 
     private function parseResponse($data)
     {
+        logger()->debug('Payeer Refund Response', $data);
         if (is_array($data->errors) && count($data->errors)) {
             $this->message = implode(" | ", $data->errors);
             $this->success = false;
