@@ -43,6 +43,6 @@ class RefundResponse extends AbstractResponse
             return false;
         }
         $this->success = true;
-        $this->historyId = $data['historyId'];
+        $this->historyId = $data->historyId;
     }
 }
