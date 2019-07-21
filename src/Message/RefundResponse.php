@@ -31,12 +31,12 @@ class RefundResponse extends AbstractResponse
 
     public function getTransactionReference()
     {
-        return 0;
+        return $this->data->historyId;
     }
 
     private function parseResponse($data)
     {
-        if (is_array($data->errors) && count($data->errors)) {
+        if (count($data->errors)) {
             $this->message = implode(" | ", $data->errors);
             $this->success = false;
             return false;
