@@ -15,7 +15,7 @@ class RefundResponse extends AbstractResponse
     public function __construct(RequestInterface $request, $data)
     {
         $this->request = $request;
-        $this->data = $data;
+        $this->data = json_decode(json_encode($data),true);
         $this->parseResponse($data);
     }
 
@@ -31,13 +31,13 @@ class RefundResponse extends AbstractResponse
 
     public function getTransactionReference()
     {
-        return $this->data->historyId;
+        return $this->data['historyId'];
     }
 
     private function parseResponse($data)
     {
-        if (isset($data->errors)) {
-            $this->message = implode(" | ", $data->errors);
+        if (isset($data['errors'])) {
+            $this->message = implode(" | ", $data['errors']);
             $this->success = false;
             return false;
         }
