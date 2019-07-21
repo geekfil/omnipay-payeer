@@ -36,7 +36,6 @@ class RefundResponse extends AbstractResponse
 
     private function parseResponse($data)
     {
-        logger()->debug('Payeer Refund Response', $data);
         if (is_array($data->errors) && count($data->errors)) {
             $this->message = implode(" | ", $data->errors);
             $this->success = false;
