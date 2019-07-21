@@ -15,7 +15,7 @@ class RefundResponse extends AbstractResponse
     public function __construct(RequestInterface $request, $data)
     {
         $this->request = $request;
-        $this->data = json_decode(json_encode($data),true);
+        $this->data = $data;
         $this->parseResponse($data);
     }
 
