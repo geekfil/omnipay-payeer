@@ -44,6 +44,7 @@ class PurchaseRequest extends AbstractRequest
         return $this->setParameter('merchant_lang', $value);
     }
 
+
     public function getData()
     {
         $this->validate('account', 'currency', 'amount', 'description');

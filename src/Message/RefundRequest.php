@@ -2,8 +2,6 @@
 
 namespace Omnipay\Payeer\Message;
 
-use Omnipay\Common\Exception\InvalidRequestException;
-
 class RefundRequest extends AbstractRequest
 {
     protected $endpoint = 'https://payeer.com/ajax/api/api.php';
@@ -58,19 +56,46 @@ class RefundRequest extends AbstractRequest
         return $this->setParameter('action', $value);
     }
 
+    public function getPs()
+    {
+        return $this->getParameter('ps');
+    }
+
+    public function setPs($value)
+    {
+        return $this->setParameter('ps', $value);
+    }
+
+    public function getParamAccountNumber()
+    {
+        return $this->getParameter('param_account_number');
+    }
+
+    public function setParamAccountNumber($value)
+    {
+        return $this->setParameter('param_account_number', $value);
+    }
+
     public function getData()
     {
-        $this->validate('payeeAccount', 'amount', 'currency', 'description');
+        $this->validate('amount', 'currency', 'description','action');
 
         $data['apiPass'] = $this->getApiKey();
         $data['apiId'] = $this->getApiId();
-        $data['account'] = $this->getAccount();
-        $data['sum'] = $this->getAmount();
         $data['curIn'] = $this->getCurrency();
         $data['curOut'] = $this->getCurrency();
-        $data['to'] = $this->getPayeeAccount();
-        $data['comment'] = $this->getDescription();
-        $data['action'] = $this->getAction()?$this->getAction():'transfer';
+        $data['action'] = $this->getAction();
+        $data['account'] = $this->getAccount();
+
+        if ($this->getAction() == 'transfer') {
+            $data['comment'] = $this->getDescription();
+            $data['to'] = $this->getPayeeAccount();
+            $data['sum'] = $this->getAmount();
+        } else if ($this->getAction() == 'output' or $this->getAction() == 'initOutput') {
+            $data['sumIn'] = $this->getAmount();
+            $data['ps'] = $this->getPs();
+            $data[$this->getParamAccountNumber()] = $this->getPayeeAccount();
+        }
         return $data;
     }
 
