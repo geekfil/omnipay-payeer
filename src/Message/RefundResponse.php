@@ -11,6 +11,7 @@ class RefundResponse extends AbstractResponse
     protected $redirectUrl;
     protected $message;
     protected $success;
+    protected $historyId;
 
     public function __construct(RequestInterface $request, $data)
     {
@@ -29,6 +30,11 @@ class RefundResponse extends AbstractResponse
         return $this->message;
     }
 
+    public function getTransactionReference()
+    {
+        return $this->historyId;
+    }
+
     private function parseResponse($data)
     {
         if (is_array($data->errors) && count($data->errors)) {
@@ -37,5 +43,6 @@ class RefundResponse extends AbstractResponse
             return false;
         }
         $this->success = true;
+        $this->historyId = $data['historyId'];
     }
 }
