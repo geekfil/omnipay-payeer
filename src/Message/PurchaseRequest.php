@@ -64,6 +64,11 @@ class PurchaseRequest extends AbstractRequest
         return $this->setParameter('params_key', $value);
     }
 
+    public function setSubmerchant($value)
+    {
+        return $this->setParameter('submerchant',$value);
+    }
+
 
     public function getData()
     {
@@ -103,7 +108,7 @@ class PurchaseRequest extends AbstractRequest
             'success_url' => $this->getParameter('success_url'),
             'fail_url' => $this->getParameter('fail_url'),
             'status_url' => $this->getParameter('status_url'),
-            'submerchant' => $_SERVER['HTTP_HOST']
+            'submerchant' => $this->getParameter('submerchant')
         ];
 
         $key = md5($this->getParameter('params_key') . $this->getTransactionId());

@@ -94,6 +94,11 @@ class Gateway extends AbstractGateway
         return $this->setParameter('params_key', $value);
     }
 
+    public function setSubmerchant($value)
+    {
+        return $this->setParameter('submerchant',$value);
+    }
+
     public function getDefaultParameters()
     {
         return [
