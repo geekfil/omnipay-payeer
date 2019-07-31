@@ -74,6 +74,26 @@ class Gateway extends AbstractGateway
         return $this->setParameter('merchant_lang', $value);
     }
 
+    public function setSuccessUrl($value)
+    {
+        return $this->setParameter('success_url', $value);
+    }
+
+    public function setFailUrl($value)
+    {
+        return $this->setParameter('fail_url', $value);
+    }
+
+    public function setStatusUrl($value)
+    {
+        return $this->setParameter('status_url', $value);
+    }
+
+    public function setParamsKey($value)
+    {
+        return $this->setParameter('params_key', $value);
+    }
+
     public function getDefaultParameters()
     {
         return [
